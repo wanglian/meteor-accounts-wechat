@@ -1,6 +1,6 @@
 Package.describe({
   name: "wanglian:accounts-wechat",
-  version: "0.0.1",
+  version: "0.0.2",
   summary: "Login service for Wechat accounts",
   git: "https://github.com/wanglian/meteor-accounts-wechat",
 });
