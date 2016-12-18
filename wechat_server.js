@@ -7,15 +7,19 @@ OAuth.registerService('wechat', 2, null, function(query) {
   var openid = response.openid;
   var identity = getUserInfo(accessToken, openid);
 
-  var serviceData = _.extend(identity, {accessToken: response.access_token});
-
   return {
     serviceData: {
       id: openid,
       accessToken: OAuth.sealSecret(accessToken)
     },
     options: {
-      profile: { name: identity.nickname }
+      profile: {
+        name:    identity.nickname,
+        openid:  identity.openid,
+        unionid: identity.unionid,
+        avatar:  identity.headimgurl,
+        sex:     identity.sex
+      }
     }
   };
 });
@@ -82,7 +86,7 @@ var getUserInfo = function(access_token, openid) {
   } else {
     return response;
   }
-}
+};
 
 Wechat.retrieveCredential = function(credentialToken, credentialSecret) {
   return OAuth.retrieveCredential(credentialToken, credentialSecret);
